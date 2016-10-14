@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/foundation.css" />
     <link rel="stylesheet" href="css/app.css" />
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
 	<script src="js/tax3.js"></script>
   </head>
   <body>
@@ -25,12 +26,32 @@
     </div>
   <div class="row">
       <div class="large-12 columns">
-          <!-- onclick="getIncome();"  -->
          <button id="addTrans" class="button" onclick="calc();">Calculate</button>
       </div>
   </div>
- 
+ <div class="row">
+      <div class="large-12 columns">
        <div id="output"> </div>
+       </div>
+  </div>
+  <!-- STYLE/FORMAT RESULTS -->
+  <div class="row">
+      <div class="large-12 columns">
+       <div id="result">
+        <!--  <p class="explainer">
+         Under current tax law you pay</p> <span></span> <p>in income taxes.</p>
+         <p> You would pay </p> <span></span> <p>in income taxes under Hillary Clinton's plan and </p> <span></span> <p>under Donald Trump's</p> -->
+       </div>
+        </div>
+       </div>
+ <div class="row">
+      <div class="large-12 columns">
+       <div id="chart" style="visibility: hidden">
+       <h3>Effective Tax Rate</h3>
+      <svg class="chart" data-bar-chart data-bar-width="75"></svg>
+      </div>
+      </div>
+      </div>
 
        <script>
        $(document).ready(); 
