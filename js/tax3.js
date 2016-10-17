@@ -186,8 +186,11 @@
             var efftaxC = (taxC/amt) * 100;
             var efftaxT = (taxT/amt) * 100;
 
-            var data = [efftax, efftaxC, efftaxT];
-            console.log(data);
+            var data = [
+            {label:"Current", value:efftax},
+            {label:"Clinton", value:efftaxT},
+            {label:"Trump", value:efftaxT}
+            ];
 
            //create chart
             $('[data-bar-chart]').each(function (i, svg) {
@@ -195,13 +198,21 @@
             data.map(function (datum) {
              return parseFloat(datum);
             });
+            var label = data.map(function(d){
+                return d.label;
+            });
+            var value = data.map(function(d){
+                return d.value;
+            });
+            console.log(value);
+            console.log(label);
 
             var barWidth = parseFloat($svg.data('bar-width')) || 40;
             var barSpace = parseFloat($svg.data('bar-space')) || 4;
             var chartHeight = $svg.outerHeight();
 
             var y = d3.scale.linear()
-                      .domain([0, d3.max(data)])
+                      .domain([0, d3.max(value)])
                       .range([0, chartHeight]);
 
             d3.select(svg)
@@ -215,12 +226,9 @@
                 .attr("height", 0)
                 .transition()
                 .delay(function (d, i) { return i*150; })
-                .attr("y", function (d, i) { return chartHeight-y(d); })
-                .attr("height", function (d) { return y(d); });
-          });
-
-
-    };
+                .attr("y", function(d){ return chartHeight - d.value;})
+                .attr("height", function(d){return d.value;});
+    });
     
     function num(n) {
         n = n.toString();
@@ -234,6 +242,9 @@
         
         return n + '0';
     };
+
+};
+
 
     // document.getElementById('addTrans').onClick(ca;
     // $('#addTrans').click(calc);
