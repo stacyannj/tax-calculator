@@ -160,12 +160,12 @@
             return '<tr><th>' + p + '</th><td>' + num(v) + '</td></tr>';
         });
         
-        h.push('<tr><th>Total</th><td>' + num(total) + '</td></tr>');
+        // h.push('<tr><th>Total</th><td>' + num(total) + '</td></tr>');
         
-        var percentTotal = Math.round(total/amt * 1000)/10;
+        // var percentTotal = Math.round(total/amt * 1000)/10;
 
         
-        h.push('<tr><th>Percent</th><td>' + percentTotal + '</td></tr>');
+        // h.push('<tr><th>Percent</th><td>' + percentTotal + '</td></tr>');
         
         h = ('<table>' + h.join('') + '</table>');
         // document.getElementById('output').html('h');
@@ -177,7 +177,7 @@
             // return '<p>' + q + '<p>' + '<span>' + num(w) + '</span>';
         });
         
-        j.push('<p class="explainer">Under current tax law you pay <span>' + tax + ' ' + '</span>in income taxes. You would pay ' + '<span>' + taxC +'</span>in income taxes under Hillary Clintons plan and' + ' ' + '<span>'
+        j.push('<p class="explainer">Under current tax law you pay <span>' + tax + ' ' + '</span>  in income taxes. You would pay ' + '<span>' + taxC +'</span>in income taxes under Hillary Clintons plan and' + ' ' + '<span>'
          + ' ' + taxT + '</span> under Donald Trumps</p>');
         $('#result').html(j);
         document.getElementById('chart').style.visibility='visible';
@@ -188,7 +188,7 @@
 
             var data = [
             {label:"Current", value:efftax},
-            {label:"Clinton", value:efftaxT},
+            {label:"Clinton", value:efftaxC},
             {label:"Trump", value:efftaxT}
             ];
 
@@ -209,13 +209,16 @@
 
             var barWidth = parseFloat($svg.data('bar-width')) || 40;
             var barSpace = parseFloat($svg.data('bar-space')) || 4;
-            var chartHeight = $svg.outerHeight();
+            var chartHeight = 200;
+            var chartWidth = 300;
+            // var chartHeight = $svg.outerHeight();
+            console.log(chartHeight);
 
             var y = d3.scale.linear()
                       .domain([0, d3.max(value)])
                       .range([0, chartHeight]);
 
-            d3.select(svg)
+            bars = d3.select(svg)
               .selectAll("rect")
                 .data(data)
               .enter().append("rect")
@@ -226,9 +229,23 @@
                 .attr("height", 0)
                 .transition()
                 .delay(function (d, i) { return i*150; })
-                .attr("y", function(d){ return chartHeight - d.value;})
-                .attr("height", function(d){return d.value;});
-    });
+                .attr("y", function(d){ return chartHeight - (d.value * 4);})
+                .attr("height", function(d){return (d.value * 4);});
+                
+                // bars.selectAll(".bar")
+                // .data(data)
+                // .enter()
+                // .append("text")
+                // .text(function(d){
+                //     return d.label;
+                // });
+                // .attr("x", function(d, i) {
+                //     return i * ( chartWidth / data.length);
+                // })
+                // .attr("y", function(d) {
+                //     return chartHeight - (d * 4);
+                // });
+                });
     
     function num(n) {
         n = n.toString();
