@@ -10,7 +10,7 @@
             'Clinton Income Tax': 0, // see below
             'Trump Income Tax': 0 // see below
         };
-        
+
         var brackets = [
             { max: 8925, pct: .1 },
             { max: 36250, pct: .15 },
@@ -19,7 +19,7 @@
             { max: 398350, pct: .33 },
             { max: 400000, pct: .35 },
             { max: null, pct: .396 }];
-       //  clinton: 
+       //  clinton:
        // [{ max: 9275, pct: .1 },
        //      { max: 37650, pct: .15 },
        //      { max: 91150, pct: .25 },
@@ -28,7 +28,7 @@
        //      { max: 415050, pct: .35 },
        //      { max: 5000000, pct: .396 },
        //      { max: null, pct: .436 }],
-       //  trump: 
+       //  trump:
        //  [{ max: 37500, pct: .12 },
        //      { max: 112500, pct: .25 },
        //      { max: null, pct: .333 }]}
@@ -58,15 +58,15 @@
         var tax = 0;
         var taxC = 0;
         var taxT = 0;
-        
+
         // $.each(brackets, function(i, bracket) {
         //     // get each set of max, pct
         //     const now = bracket["current"];
         //     const clinton = bracket["clinton"];
-        //     const trump = bracket["trump"]; 
+        //     const trump = bracket["trump"];
 
         //     // run through each set to calculate tax
-        //     for (i in now){ 
+        //     for (i in now){
         //         var chunk = now[i].max;
         //     if (running < chunk) {
         //         chunk = running;
@@ -74,15 +74,15 @@
         //     } else {
         //         running -= chunk;
         //     }
-            
+
         //     tax += chunk * now[i].pct;
         //     console.log(running);
         //     // lastChunk = chunk;
-        // }; 
+        // };
 
 
-        // //need these to work 
-        // for (i in clinton){ 
+        // //need these to work
+        // for (i in clinton){
         //         var chunkC = clinton[i].max;
         //     if (runningC < chunk) {
         //         chunkC = runningC;
@@ -94,8 +94,8 @@
         //     taxC += chunkC * clinton[i].pct;
         //     console.log(runningC);
         //     // lastChunk = chunk;
-        // }; 
-        // for (i in trump){ 
+        // };
+        // for (i in trump){
         //         var chunkT = trump[i].max;
         //     if (runningT < chunk) {
         //         chunkT = runningT;
@@ -104,47 +104,47 @@
         //         runningT -= chunkT;
         //     }
         //          console.log(runningT);
-            
+
         //     taxT += chunkT * trump[i].pct;
         //     // lastChunk = chunk;
-        // }; 
+        // };
          $.each(brackets, function(i, bracket) {
             var chunk = bracket.max;
-            
+
             if (running < chunk) {
                 chunk = running;
                 running = 0;
             } else {
                 running -= chunk;
             }
-            
+
             tax += chunk * bracket.pct;
             lastChunk = chunk;
         });
 
          $.each(bracketsClinton, function(i, bracket) {
             var chunkC = bracket.max;
-            
+
             if (runningC < chunkC) {
                 chunkC = runningC;
                 runningC = 0;
             } else {
                 runningC -= chunkC;
             }
-            
+
             taxC += chunkC * bracket.pct;
             lastChunk = chunkC;
         });
          $.each(bracketsTrump, function(i, bracket) {
             var chunkT = bracket.max;
-            
+
             if (runningT < chunkT) {
                 chunkT = runningT;
                 runningT = 0;
             } else {
                 runningT -= chunkT;
             }
-            
+
             taxT += chunkT * bracket.pct;
             lastChunk = chunkT;
         });
@@ -154,19 +154,19 @@
         taxes['Trump Income Tax'] = taxT;
         // TODO: use these to calculate changes
         var total = 0;
-        
+
         var h = $.map(taxes, function(v, p) {
             total += v;
             return '<tr><th>' + p + '</th><td>' + num(v) + '</td></tr>';
         });
-        
+
         // h.push('<tr><th>Total</th><td>' + num(total) + '</td></tr>');
-        
+
         // var percentTotal = Math.round(total/amt * 1000)/10;
 
-        
+
         // h.push('<tr><th>Percent</th><td>' + percentTotal + '</td></tr>');
-        
+
         h = ('<table>' + h.join('') + '</table>');
         // document.getElementById('output').html('h');
         $('#output').html(h);
@@ -176,9 +176,9 @@
             // total += w;
             // return '<p>' + q + '<p>' + '<span>' + num(w) + '</span>';
         });
-        
-        j.push('<p class="explainer">Under current tax law you pay <span>' + tax + ' ' + '</span>  in income taxes. You would pay ' + '<span>' + taxC +'</span>in income taxes under Hillary Clintons plan and' + ' ' + '<span>'
-         + ' ' + taxT + '</span> under Donald Trumps</p>');
+        j.push('<p class="explainer">Under current tax law you pay <span style="background-color:#000; color: white; font-weight: bold; font-size: 1.5em">' + '$' + tax + ' ' + '</span>in income taxes. You would pay ' + '<span style="background-color:#1baae1; color: white; font-weight: bold; font-size: 1.5em">' + "$" + taxC +'</span>in income taxes under the plan proposed by Hillary Clinton and' + ' ' + '<span style="background-color:red; color: white; font-weight: bold; font-size: 1.5em">'
+         + '$' + taxT + '</span> under the plan proposed by Donald Trump.</p>');
+
         $('#result').html(j);
         document.getElementById('chart').style.visibility='visible';
             //put tax values into dataset
@@ -231,7 +231,7 @@
                 .delay(function (d, i) { return i*150; })
                 .attr("y", function(d){ return chartHeight - (d.value * 4);})
                 .attr("height", function(d){return (d.value * 4);});
-                
+
                 // bars.selectAll(".bar")
                 // .data(data)
                 // .enter()
@@ -246,7 +246,7 @@
                 //     return chartHeight - (d * 4);
                 // });
                 });
-    
+
     function num(n) {
         n = n.toString();
         var i = n.indexOf('.');
@@ -256,7 +256,7 @@
         i = n.length - i;
         if (i == 3)
             return n;
-        
+
         return n + '0';
     };
 
