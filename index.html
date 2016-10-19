@@ -7,9 +7,16 @@
     <title>Income Tax Calculator</title>
     <link rel="stylesheet" href="css/foundation.css" />
     <link rel="stylesheet" href="css/app.css" />
+    <link href="https://fonts.googleapis.com/css?family=Oswald:400,700|Roboto:400,700" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <script src="http://d3js.org/d3.v3.min.js"></script>
 	<script src="js/tax3.js"></script>
+  <script src="path/to/accounting.js"></script>
+
+<script type="text/javascript">
+	// Library ready to use:
+	accounting.formatMoney(5318008);
+</script>
   </head>
   <body>
 
@@ -18,32 +25,33 @@
       	 <h1>Income Tax Calculator</h1>
       </div>
     </div>
-    
+
  <div class="row">
-      <div class="large-12 columns">
-       <label>Income:</label><input id=income type="number" />
+      <div class="large-10 columns">
+       <label font-size: 1em>Household income:</label><input id=income type="number" />
       </div>
-    </div>
-  <div class="row">
-      <div class="large-12 columns">
+      <div class="large-2 columns" id="submit">
          <button id="addTrans" class="button" onclick="calc();">Calculate</button>
       </div>
   </div>
+
  <div class="row">
-      <div class="large-12 columns">
+   <div class="large-6 columns">
+    <div id="result">
+     <!--  <p class="explainer">
+      Under current tax law you pay</p> <span></span> <p>in income taxes.</p>
+      <p> You would pay </p> <span></span> <p>in income taxes under Hillary Clinton's plan and </p> <span></span> <p>under Donald Trump's</p> -->
+    </div>
+     </div>
+
+      <div class="large-6 columns">
        <div id="output"> </div>
        </div>
-  </div>
+
   <!-- STYLE/FORMAT RESULTS -->
-  <div class="row">
-      <div class="large-12 columns">
-       <div id="result">
-        <!--  <p class="explainer">
-         Under current tax law you pay</p> <span></span> <p>in income taxes.</p>
-         <p> You would pay </p> <span></span> <p>in income taxes under Hillary Clinton's plan and </p> <span></span> <p>under Donald Trump's</p> -->
-       </div>
-        </div>
-       </div>
+
+</div>
+
  <div class="row">
       <div class="large-12 columns">
        <div id="chart" style="visibility: hidden">
@@ -54,8 +62,14 @@
       </div>
 
        <script>
-       $(document).ready(); 
+       $(document).ready();
        </script>
-      
+
+       <div class="row">
+         <div class="large-12 columns">
+         <span id="source">Source: <a href="http://taxfoundation.org/">Tax Foundation</a></span> <span id="credit">Credit: <a href="http://fortune.com/author/stacy-jones/">Stacy Jones</a> and <a href="http://fortune.com/author/grace-donnelly/">Grace Donnelly</a></span>
+         </div>
+       </div>
+
 </body>
 </html>

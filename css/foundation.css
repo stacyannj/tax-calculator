@@ -23,7 +23,26 @@ html {
    * Remove default margin.
    */
 body {
+  background-color: #DFD7D0;
   margin: 0; }
+
+#source, #credit {
+    display: block;
+    font-size: 0.75em;
+    font-family: 'Roboto', sans-serif;
+    a.text-decoration-color: #999;
+    a.hover: #1baae1;
+  }
+
+#submit {
+  padding-top: 1.5em;
+}
+
+#result {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1em;
+
+}
 
 /* HTML5 display definitions
      ========================================================================== */
@@ -1186,8 +1205,8 @@ td {
   padding: 0; }
 
 p {
-  font-size: inherit;
-  line-height: 1.6;
+  font-size: 1em;
+  line-height: 2em;
   margin-bottom: 1rem;
   text-rendering: optimizeLegibility; }
 
@@ -1205,8 +1224,15 @@ small {
   font-size: 80%;
   line-height: inherit; }
 
-h1,
-h2,
+h1 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1em;
+}
+h2 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1em;
+}
+
 h3,
 h4,
 h5,
